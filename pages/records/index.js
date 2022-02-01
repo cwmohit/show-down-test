@@ -7,7 +7,13 @@ function Records() {
   const { users } = router.query || [];
   const getData = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${users}`);
+      let response = null;
+      if(users){
+         response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${users}`);
+      }else{
+        response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+      }
+
       const result = await response.json();
       console.log(result);
       setData(result);
@@ -16,9 +22,7 @@ function Records() {
     }
   };
   useEffect(() => {
-    if (users) {
       getData();
-    }
   }, [users]);
   return (
     <div className="flex items-center min-h-[50vh]">
