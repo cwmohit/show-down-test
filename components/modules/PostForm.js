@@ -15,6 +15,7 @@ function PostForm() {
         <input
           className="py-4 px-1 border-none outline-none w-full"
           name={`email_${user}`}
+          type="email"
           placeholder={`Email ${user}`}
           required
         />
